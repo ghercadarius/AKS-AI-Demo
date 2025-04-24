@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythonservice
+spec:
+  type: LoadBalancer
+  selector:
+    app: pythonserver
+  ports:
+    - protocol: TCP
+      port: 6789
+      targetPort: 6789

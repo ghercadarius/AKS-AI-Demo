@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: pythonserver
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pythonserver
+  template:
+    metadata:
+      labels:
+        app: pythonserver
+    spec:
+      containers:
+        - name: python-container
+          image: mlacrcloudunibuc.azurecr.io/pythonserver:latest
+          ports:
+            - containerPort: 6789
+          env:
+            - name: MONGO_DB_CONNECTION_STRING
+              value: "no_leaking_connection_strings :)"
+            - name: PORT_NUMBER
+              value: "6789"
